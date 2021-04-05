@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <title>Page Replacement</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="lru.js"></script>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <a class="navbar-brand" href="#">Page Replacement</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+        <li class="nav-item ">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="info.html"><strong>More Information</strong><span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <br>
+  <div class="container">
+
+    <h1 class="display-3">
+      <center>Page Replacement Algorithm Guide</center>
+    </h1>
+    <hr class="my-4">
+    <p>The page replacement algorithm decides which memory page is to be replaced. The process of replacement is sometimes called swap out or write to disk. Page replacement is done when the requested page is not found in the main memory (page
+      fault). </p>
+
+    <p><strong>Page Fault -</strong> A page fault happens when a running program accesses a memory page that is mapped into the virtual address space, but not loaded in physical memory.
+
+      Since actual physical memory is much smaller than virtual memory, page faults happen. In case of page fault, Operating System might have to replace one of the existing pages with the newly needed page. Different page replacement algorithms
+      suggest different ways to decide which page to replace. The target for all algorithms is to reduce the number of page faults.</p>
+
+    <p>When a page fault occurs, the operating system has to choose a page to remove from memory to make room for the page that
+      has to be brought in. The page replacement is done by swapping the required pages from backup storage to main memory
+      and vice-versa. If the page to be removed has been modified while in memory, it must be rewritten to the disk to
+      bring the disk copy up to date. If, however, the page has not been changed (e.g., it contains program text),
+      the disk copy is already up to date, so no rewrite is needed. The page to be read in just overwrites the page
+      being evicted. A page replacement algorithm is evaluated by running the particular algorithm on a string of
+      memory references and compute the page faults.Referenced string is a sequence of pages being referenced.
+      Page fault is not an error. Contrary to what their name might suggest, page faults are not errors and
+      are common and necessary to increase the amount of memory available to programs in any operating
+      system that utilizes virtual memory, including Microsoft Windows, Mac OS X, Linux and Unix.</p>
+
+    <p>Each operating system uses different page replacement algorithms. To select the particular algorithm,
+      the algorithm with lowest page fault rate is considered. <br>
+      1.First-In, First-Out page replacement <br>
+      2.Least recently used page replacement <br>
+
+      3.Optimal page replacement algorithm <br>
+
+    </p>
+    <hr class="my-4">
+    <hr class="my-4">
+    <h2 class="dispThelay-3">First In First Out</h2>
+    <hr class="my-4">
+    <p>
+      In operating systems that use paging for memory management, page replacement algorithm are needed to decide which page needed to be replaced when new page comes in. Whenever a new page is referred and not present in memory, page fault occurs
+      and Operating System replaces one of the existing pages with newly needed page. Different page replacement algorithms suggest different ways to decide which page to replace. The target for all algorithms is to reduce number of page faults.
+      <br>
+      <strong>First In First Out (FIFO) page replacement algorithm –</strong>
+      <br>
+      This is the simplest page replacement algorithm. In this algorithm, operating system keeps track of all pages in the memory in a queue, oldest page is in the front of the queue. When a page needs to be replaced page in the front of the queue is
+      selected for removal.
+      <br><br>
+      <strong>Example :</strong> Consider the following reference string: 0, 2, 1, 6, 4, 0, 1, 0, 3, 1, 2, 1.
+      <br>
+      Using FIFO page replacement algorithm –
+      <br>
+    </p>
+    <img src="fifo.png" alt="First In First Out">
+    <hr class="my-4">
+
+    <hr class="my-4">
+
+    <h2 class="dispThelay-3">Least Recently Used</h2>
+    <hr class="my-4">
+    <p> In operating systems that use paging for memory management, page replacement algorithm are needed to decide which page needed to be replaced when new page comes in. Whenever a new page is referred and not present in memory, page fault occurs
+      and Operating System replaces one of the existing pages with newly needed page. Different page replacement algorithms suggest different ways to decide which page to replace. The target for all algorithms is to reduce number of page faults.
+      In <strong>L</strong>east <strong>R</strong>ecently <strong>U</strong>sed (LRU) algorithm is a Greedy algorithm where the page to be replaced is least recently used. The idea is based on locality of reference, the least recently used page is
+      not likely
+      <br>
+      Let say the page reference string 7 0 1 2 0 3 0 4 2 3 0 3 2 . Initially we have 4 page slots empty.
+      Initially all slots are empty, so when 7 0 1 2 are allocated to the empty slots —> <strong>4 Page faults</strong>
+      0 is already their so —> 0 Page fault.
+      <br>
+      when 3 came it will take the place of 7 because it is least recently used —><strong>1 Page fault</strong>
+      <br>
+      0 is already in memory so —> <strong>0 Page fault</strong>.
+      <br>
+      4 will takes place of 1 —> <strong>1 Page Fault</strong>.
+      <br>
+      Now for the further page reference string —> <strong>0 Page fault</strong> because they are already available in the memory.
+    </p><br>
+    <p> <strong>Example : </strong><br><br> </p>
+    <img src="lru.png" alt="Least Recently Used">
+    <hr class="my-4">
+
+
+
+    <hr class="my-4">
+    <h2 class="dispThelay-3">Optimal Page Replacement</h2>
+    <hr class="my-4">
+    <br>
+    <p> In operating systems, whenever a new page is referred and not present in memory, page fault occurs and Operating System replaces one of the existing pages with newly needed page. Different page replacement algorithms suggest different ways to
+      decide which page to replace. The target for all algorithms is to reduce number of page faults.
+      In this algorithm, OS replaces the page that will not be used for the longest period of time in future.<br>
+<br>
+      <strong>Examples :</strong> <br>
+
+      Input : Number of frames, fn = 3<br>
+      Reference String, pg[] = {7, 0, 1, 2,
+      0, 3, 0, 4, 2, 3, 0, 3, 2, 1,
+      2, 0, 1, 7, 0, 1};<br>
+      Output : No. of hits = 11<br>
+      No. of misses = 9<br>
+
+      Input : Number of frames, fn = 4</br>
+      Reference String, pg[] = {7, 0, 1, 2,
+      0, 3, 0, 4, 2, 3, 0, 3, 2};
+      Output : No. of hits = 7<br>
+      No. of misses = 6<br>
+
+      The idea is simple, for every reference we do following :<br>
+
+      1. If referred page is already present, increment hit count.<br>
+      2. If not present, find if a page that is never referenced in future. If such a page exists, replace this page with new page. If no such page exists, find a page that is referenced farthest in future. Replace this page with new page.<br>
+
+
+    </p>
+
+    <img src="opr_image.png" alt="Italian Trulli">
+    <hr class="my-4">
+
+    <hr class="my-4">
+
+    <h2 class="ddispThelay-3">Belady's Phenomenon</h2>
+    <hr class="my-4">
+    <p>In Operating System, process data is loaded in fixed sized chunks and each chunk is referred to as a page. The processor loads these pages in the fixed sized chunks of memory called frames. Typically the size of each page is always equal to
+      the frame size.
+
+      A page fault occurs when a page is not found in the memory, and needs to be loaded from the disk. If a page fault occurs and all memory frames have been already allocated, then replacement of a page in memory is required on the request of a new
+      page. This is referred to as demand-paging. The choice of which page to replace is specified by a page replacement algorithms. The commonly used page replacement algorithms are FIFO, LRU, optimal page replacement algorithms etc.
+
+      Generally, on increasing the number of frames to a process’ virtual memory, its execution becomes faster as less number of page faults occur. Sometimes the reverse happens, i.e. more number of page faults occur when more frames are allocated to
+      a process. This most unexpected result is termed as Belady’s Anomaly.
+
+      Bélády’s anomaly is the name given to the phenomenon where increasing the number of page frames results in an increase in the number of page faults for a given memory access pattern.
+
+      This phenomenon is commonly experienced in following page replacement algorithms:<br><br>
+
+
+      1. First in first out (FIFO)<br>
+      2. Second chance algorithm<br>
+      3. Random page replacement algorithm<br><br>
+
+      <strong> Reason of Belady’s Anomaly –</strong>
+
+      The other two commonly used page replacement algorithms are Optimal and LRU, but Belady’s Anamoly can never occur in these algorithms for any reference string as they belong to a class of stack based page replacement algorithms.
+      <br><br>
+
+
+      <strong>Belady’s Anomaly in FIFO –</strong> <br><br>
+
+      Assuming a system that has no pages loaded in the memory and uses the FIFO Page replacement algorithm. Consider the following reference string:
+
+      1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5<br><br>
+
+      <strong>Case-1: </strong>If the system has 3 frames, the given reference string on using FIFO page replacement algorithm yields a total of 9 page faults. The diagram below illustrates the pattern of the page faults occurring in the
+      example.<br><br>
+      <img src="fifo3.png" alt="belady's Anomaly Case 1">
+
+
+      <br><br>
+      <strong>  Case-2: </strong> If the system has 4 frames, the given reference string on using FIFO page replacement algorithm yields a total of 10 page faults. The diagram below illustrates the pattern of the page faults occurring in the example.<br><br>
+
+
+      <img src="fifo4.png" alt="belady's Anomaly Case 2">
+      <br><br>
+      It can be seen from the above example that on increasing the number of frames while using the FIFO page replacement algorithm, the number of page faults increased from 9 to 10.
+      <br>
+      <strong>Note</strong>- It is not necessary that every string reference pattern cause Belady anomaly in FIFO but there are certain kind of string references that worsen the FIFO performance on increasing the number of frames.
+    </p>
+
+
+
+
+</body>
+
+</html>
