@@ -14,4 +14,8 @@ Some Page Replacement Algorithms :
 
 - First In First Out (FIFO)
 - Least Recently Used (LRU)
-- Optimal Page Replacemen
+- Optimal Page Replacement
+
+Belady’s Anomaly - more page faults if we increase the number of page frames.
+
+Here with this project, I have tried to simulate the visualization of swapping of pages, when the user inputs the page sequence and the number of frames.
